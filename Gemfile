@@ -29,6 +29,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # gem 'rack-cors'
 
 gem "rgeo"
+gem 'rgeo-activerecord'
 
 group :development, :test do
   gem 'rspec-rails'
