@@ -30,6 +30,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem "rgeo"
 gem 'rgeo-activerecord'
+gem 'activerecord-postgis-adapter'
+
+
+
 
 group :development, :test do
   gem 'rspec-rails'

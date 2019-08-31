@@ -33,6 +33,9 @@ GEM
       activemodel (= 5.2.3)
       activesupport (= 5.2.3)
       arel (>= 9.0)
+    activerecord-postgis-adapter (5.2.2)
+      activerecord (~> 5.1)
+      rgeo-activerecord (~> 6.0)
     activestorage (5.2.3)
       actionpack (= 5.2.3)
       activerecord (= 5.2.3)
@@ -160,6 +163,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-postgis-adapter
   bootsnap (>= 1.1.0)
   byebug
   factory_bot_rails
