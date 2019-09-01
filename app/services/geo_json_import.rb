@@ -8,18 +8,20 @@ class Services::GeoJsonImport
   FROM_GEO_JSON_FILE = {is_given: true}.freeze
 
   def initialize(file_path)
-    @file_path = file_path
+    @file = File.read(file_path)
   end
 
   def run
-    file = File.read(@file_path)
-    geojson_to_areas(file)
+    geojson_to_areas(@file)
+  rescue StandardError => error
+    puts "Error in Services::GeoJsonImport: #{error}"
+    Rails.logger.info "Error in Services::GeoJsonImport: #{error}"
   end
 
   private
 
   def geojson_to_areas(json_str)
-    geo_json = RGeo::GeoJSON.decode(json_str, :json_parser => :json, :geo_factory => SIMPLE_MERCATOR_FACTORY)
+    geo_json = RGeo::GeoJSON.decode(json_str, :json_parser => :json)
     build_areas(geo_json)
   end
 
