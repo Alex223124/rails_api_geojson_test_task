@@ -27,7 +27,7 @@ class Services::GeoJsonImport
 
   def build_areas(geo_json)
     geo_json.each do |feature|
-      Area.create!(polygon: feature.geometry.projection, is_given: FROM_GEO_JSON_FILE[:is_given])
+      Area.create!(polygon: feature.geometry, is_given: FROM_GEO_JSON_FILE[:is_given])
     end
   end
 
