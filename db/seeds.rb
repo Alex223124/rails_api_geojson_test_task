@@ -7,5 +7,7 @@ require 'pry'
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+Area.delete_all
 path_to_given_areas = "#{Rails.root}/db/seeds/given_areas.json"
 Services::GeoJsonImport.new(path_to_given_areas).run
