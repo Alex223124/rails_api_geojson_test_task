@@ -45,6 +45,6 @@ class AreasController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def area_params
-      params.fetch(:area, {})
+      params.require(:area).permit(:name)
     end
 end
