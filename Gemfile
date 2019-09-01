@@ -34,7 +34,7 @@ gem 'rgeo-activerecord'
 gem 'activerecord-postgis-adapter'
 
 
-
+gem 'surrealist'
 
 group :development, :test do
   gem 'rspec-rails'
