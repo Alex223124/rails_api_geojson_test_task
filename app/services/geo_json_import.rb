@@ -21,7 +21,7 @@ class Services::GeoJsonImport
   private
 
   def geojson_to_areas(json_str)
-    geo_json = RGeo::GeoJSON.decode(json_str, :json_parser => :json)
+    geo_json = RGeo::GeoJSON.decode(json_str, :json_parser => :json, :geo_factory => SIMPLE_MERCATOR_FACTORY)
     build_areas(geo_json)
   end
 
