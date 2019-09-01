@@ -33,6 +33,7 @@ gem 'rgeo-geojson'
 gem 'rgeo-activerecord'
 gem 'activerecord-postgis-adapter'
 
+gem 'geocoder'
 
 group :development, :test do
   gem 'rspec-rails'
