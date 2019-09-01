@@ -4,6 +4,9 @@ require 'rgeo/geo_json'
 
 class Services::GeoJsonImport
 
+  SIMPLE_MERCATOR_FACTORY = RGeo::Geographic.simple_mercator_factory.freeze
+  FROM_GEO_JSON_FILE = {is_given: true}.freeze
+
   def initialize(file_path)
     @file_path = file_path
   end
@@ -16,11 +19,14 @@ class Services::GeoJsonImport
   private
 
   def geojson_to_areas(json_str)
-    geo_factory = RGeo::Geographic.simple_mercator_factory
-    geo_json = RGeo::GeoJSON.decode(json_str, :json_parser => :json, :geo_factory => geo_factory)
-    # should be iteration!!! 
-    a = Area.new(polygon: geo_json.first.geometry.projection)
-    a.save
+    geo_json = RGeo::GeoJSON.decode(json_str, :json_parser => :json, :geo_factory => SIMPLE_MERCATOR_FACTORY)
+    build_areas(geo_json)
+  end
+
+  def build_areas(geo_json)
+    geo_json.each do |feature|
+      Area.create!(polygon: feature.geometry.projection, is_given: FROM_GEO_JSON_FILE[:is_given])
+    end
   end
 
 end
