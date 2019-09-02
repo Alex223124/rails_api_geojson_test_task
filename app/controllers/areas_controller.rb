@@ -18,7 +18,7 @@ class AreasController < ApplicationController
     if @area.save
       render json: @area, status: :created, location: @area
     else
-      render json: @area.errors, status: :unprocessable_entity
+      render_error_response(@area.errors.messages, 422)
     end
   end
 
