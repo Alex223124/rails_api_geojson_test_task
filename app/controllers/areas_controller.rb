@@ -1,5 +1,5 @@
 class AreasController < ApplicationController
-  before_action :set_area, only: [:show, :update, :destroy]
+  before_action :set_area, only: [:show]
 
   # GET /areas
   def index
@@ -20,20 +20,6 @@ class AreasController < ApplicationController
     else
       render json: @area.errors, status: :unprocessable_entity
     end
-  end
-
-  # PATCH/PUT /areas/1
-  def update
-    if @area.update(area_params)
-      render json: @area
-    else
-      render json: @area.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /areas/1
-  def destroy
-    @area.destroy
   end
 
   private
