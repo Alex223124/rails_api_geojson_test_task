@@ -1,6 +1,14 @@
 class ApplicationController < ActionController::API
 
-  # Prevent CSRF attacks by raising an exception.
-  protect_from_forgery with: :exception
+  rescue_from StandardError, with: :unexpected_error
+
+  def unexpected_error(e)
+    Rails.logger.error(e.message)
+    render_error_response(e.message, 500)
+  end
+
+  def render_error_response(message, status)
+    render json: { error: message }, status: status
+  end
 
 end
