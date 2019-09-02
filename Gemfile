@@ -34,6 +34,8 @@ gem 'rgeo-activerecord'
 gem 'activerecord-postgis-adapter'
 
 gem 'geocoder'
+gem 'sidekiq'
+
 
 group :development, :test do
   gem 'rspec-rails'

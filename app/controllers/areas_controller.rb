@@ -15,7 +15,6 @@ class AreasController < ApplicationController
   # POST /areas
   def create
     @area = Area.new(area_params)
-
     if @area.save
       render json: @area, status: :created, location: @area
     else
