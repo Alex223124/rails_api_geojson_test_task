@@ -9,14 +9,14 @@ class AreasController < ApplicationController
 
   # GET /areas/1
   def show
-    render json: @area
+    render json: ShowAreaPresenter.new(@area)
   end
 
   # POST /areas
   def create
     @area = Area.new(area_params)
     if @area.save
-      render json: @area, status: :created, location: @area
+      render json: @area.id, status: :created, location: @area
     else
       render_error_response(@area.errors.messages, 422)
     end
