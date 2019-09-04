@@ -9,5 +9,6 @@ require 'pry'
 
 
 Area.delete_all
+Point.delete_all
 path_to_given_areas = "#{Rails.root}/db/seeds/given_areas.json"
 Services::GeoJsonImport.new(path_to_given_areas).run
