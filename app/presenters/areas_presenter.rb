@@ -1,4 +1,5 @@
 class AreasPresenter < Presenter
+
   def as_json(*)
     {
         type: "FeatureCollection",
@@ -6,8 +7,8 @@ class AreasPresenter < Presenter
     }
   end
 
-
   def features
     @object.map { |o| AreaPresenter.new(o) }
   end
+
 end
