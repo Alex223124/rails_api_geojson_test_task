@@ -5,7 +5,7 @@ require 'rgeo/geo_json'
 class Services::GeoJsonImport
 
   SIMPLE_MERCATOR_FACTORY = RGeo::Geographic.simple_mercator_factory.freeze
-  FROM_GEO_JSON_FILE = {is_given: true}.freeze
+  FROM_GEO_JSON_FILE = {is_given: true, in_given: false}.freeze
 
   def initialize(file_path)
     @file = File.read(file_path)
@@ -15,7 +15,6 @@ class Services::GeoJsonImport
     geojson_to_areas(@file)
   rescue StandardError => error
     puts "Error in Services::GeoJsonImport: #{error}"
-    Rails.logger.info "Error in Services::GeoJsonImport: #{error}"
   end
 
   private
@@ -27,7 +26,9 @@ class Services::GeoJsonImport
 
   def build_areas(geo_json)
     geo_json.each do |feature|
-      Area.create!(polygon: feature.geometry, is_given: FROM_GEO_JSON_FILE[:is_given])
+      Area.create!(polygon: feature.geometry,
+                   is_given: FROM_GEO_JSON_FILE[:is_given],
+                   in_given: FROM_GEO_JSON_FILE[:in_given])
     end
   end
 
